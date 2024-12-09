@@ -73,46 +73,62 @@
         </li>
       </ul>
 
-      <h2>Python Code Showcase</h2>
+ <h2>Python Code Showcase</h2>
 <p>
-  I utilized Python extensively to analyze and visualize the dataset. Here are a few snippets demonstrating exploratory data analysis (EDA), mathematical insights, and visualizations:
+  This project utilized Python extensively for exploratory data analysis, cleaning, statistical insights, and visualizations. Below are some key examples demonstrating my proficiency in working with data using Pandas, custom functions, and visualization tools like Matplotlib and Seaborn.
 </p>
 
 <h3>Exploratory Data Analysis</h3>
 <pre><code>
-import pandas as pd
+# Check data types
+print(data.dtypes)
 
-# Load the dataset
-df = pd.read_csv('content_data.csv')
+# Check the shape (number of rows and columns)
+print(data.shape)
 
-# Quick overview of the data
-print(df.head())
+# Get summary statistics
+print(data.describe(include='all'))
 
-# Summary statistics
-print(df.describe())
-
-# Identify flagged content
-flagged_content = df[df['is_flagged'] == True]
-print(f"Flagged content count: {len(flagged_content)}")
+# Group by 'business_customer_id' to count the number of posts for each user
+posts_per_student = data.groupby('business_customer_id')['id'].count()
 </code></pre>
 
-<h3>Mathematical Insights</h3>
+<h3>Data Cleaning and Transformation</h3>
 <pre><code>
-# Calculate percentage of flagged and deleted content
-total_posts = len(df)
-flagged_percentage = (len(flagged_content) / total_posts) * 100
-deleted_flagged_content = flagged_content[flagged_content['is_deleted'] == True]
-deleted_percentage = (len(deleted_flagged_content) / len(flagged_content)) * 100
+# Drop rows with any missing values
+data_cleaned = data.dropna()
 
-print(f"Flagged Content: {flagged_percentage:.2f}%")
-print(f"Deleted Flagged Content: {deleted_percentage:.2f}%")
+# Convert 'createdAt' and 'updatedAt' to datetime
+data_cleaned['createdAt'] = pd.to_datetime(data_cleaned['createdAt'], errors='coerce')
+data_cleaned['updatedAt'] = pd.to_datetime(data_cleaned['updatedAt'], errors='coerce')
+
+# Calculate the difference in days between 'createdAt' and 'updatedAt'
+data_cleaned['update_duration_days'] = (data_cleaned['updatedAt'] - data_cleaned['createdAt']).dt.days
 </code></pre>
 
-<h3>Data Visualization</h3>
+<h3>Custom Function for Classification</h3>
 <pre><code>
-import matplotlib.pyplot as plt
+# Define a function to classify the date difference
+def classify_update_duration(days):
+    if days == 0:
+        return 'Same Day'
+    elif days == 1:
+        return 'Next Day'
+    elif days <= 7:
+        return 'Within a Week'
+    else:
+        return 'More than a Week'
+</code></pre>
 
-# Bar chart for content updates
+<h3>Statistical Insights and Visualization</h3>
+<pre><code>
+# Convert the counts to a DataFrame
+classification_counts_df = classification_counts.reset_index()
+classification_counts_df.columns = ['Update Duration', 'Count']
+
+# Sort the values by the custom category order
+classification_counts = classification_counts.sort_index()
+
 # Set style
 sns.set(style="whitegrid")
 
@@ -145,8 +161,9 @@ plt.show()
 </code></pre>
 
 <p>
-  These code snippets demonstrate my ability to perform data wrangling, statistical calculations, and create meaningful visualizations that drive actionable insights.
+  These examples highlight my ability to clean and transform data, derive statistical insights, and create professional-quality visualizations that communicate actionable findings effectively.
 </p>
+
 
 
       <h3>Explore the Full Jupyter Notebook</h3>
