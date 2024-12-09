@@ -113,12 +113,34 @@ print(f"Deleted Flagged Content: {deleted_percentage:.2f}%")
 import matplotlib.pyplot as plt
 
 # Bar chart for content updates
-update_counts = df['update_timeframe'].value_counts()
-update_counts.plot(kind='bar', color='skyblue', figsize=(10, 6))
-plt.title('Flagged Content Updates by Timeframe')
-plt.xlabel('Timeframe')
-plt.ylabel('Number of Updates')
-plt.savefig('notebooks/bar_graph_flagged_content_updates.png')
+# Set style
+sns.set(style="whitegrid")
+
+# Create a figure and axis object
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Plot the bar chart
+classification_counts.plot(kind='bar', color=sns.color_palette("Blues_r", len(classification_counts)), ax=ax)
+
+# Set title
+plt.title('Days Returned After Initial Scan', fontsize=16, weight='bold')
+
+# Set x and y labels
+plt.xlabel('Timeframe Returned', fontsize=14, weight='bold')
+plt.ylabel('Number of Posts Updated', fontsize=14, weight='bold')
+
+# Rotate x-axis labels
+plt.xticks(rotation=45, fontsize=12)
+
+# Add gridlines
+plt.grid(True, which='both', axis='y', linestyle='--', linewidth=0.7)
+
+# Add data labels
+for idx, value in enumerate(classification_counts):
+    ax.text(idx, value + 1, str(value), ha='center', va='bottom', fontsize=12)
+
+# Display plot
+plt.tight_layout()
 plt.show()
 </code></pre>
 
