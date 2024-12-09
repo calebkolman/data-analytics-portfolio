@@ -8,31 +8,70 @@
 </head>
 <body>
   <header>
-    <h1>Python Project: School Content Analysis</h1>
+    <h1>Content Moderation and User Engagement Insights for Schools</h1>
     <nav>
       <a href="index.html">Home</a>
     </nav>
   </header>
   <main>
     <section id="python-project">
-      <h2>About This Project</h2>
+      <h2>Objective</h2>
       <p>
-        This project leverages Python for analyzing flagged content updates among students. Using libraries like Pandas, Matplotlib, and Seaborn, we uncover trends and insights in user behavior.
+        My goal was to identify trends and behaviors related to content moderation, including how flagged, deleted, ignored, or reported content affects user engagement. I also aimed to provide actionable insights to improve the efficiency of content review processes and optimize engagement across the platform.
       </p>
 
-      <h2>Data Visualization with Summary</h2>
-      <h3>Bar Graph 1</h3>
-      <p>
-        The chart below shows the timeframes in which students returned to update their flagged content after the initial scan:
-      </p>
+      <h2>High-Level Findings</h2>
       <ul>
-        <li><strong>Same Day Updates:</strong> The majority of updates occurred on the same day the content was flagged, accounting for <strong>1,784 posts</strong>.</li>
-        <li><strong>Over a Week:</strong> A smaller number of updates happened after more than a week, accounting for <strong>730 posts</strong>.</li>
-        <li><strong>Next Day:</strong> Minimal activity was observed for updates the next day (<strong>45 posts</strong>).</li>
-        <li><strong>Within a Week:</strong> A very small group returned to update their content within a week (<strong>25 posts</strong>).</li>
+        <li><strong>Total Content:</strong> I analyzed over <strong>50,000 posts</strong> across all students.</li>
+        <li><strong>Average Number of Posts Per Student:</strong> Each student averaged <strong>540 posts</strong>.</li>
+        <li>
+          <strong>Average Percent of Flagged Content:</strong> 
+          <strong>5%</strong> of all content was flagged by my system for review. This suggests that students tend to have a manageable portion of content requiring moderation. They also seem to have less of a history and may moderate their own content more effectively than the average user.
+        </li>
+        <li>
+          <strong>Average Percent of Deleted Content (Flagged Content):</strong> 
+          Only <strong>4%</strong> of flagged content was deleted, indicating that a small proportion of flagged content is deemed inappropriate. This highlights that my system’s flagging mechanism may be overly sensitive, resulting in false positives.
+        </li>
       </ul>
-      <p><strong>Key Insight:</strong> The bulk of user updates happen immediately on the same day, with a smaller secondary group returning after an extended period of over a week.</p>
+
+      <h3>Bar Graph 1 with Explanation</h3>
       <img src="notebooks/bar_graph_flagged_content_updates.png" alt="Bar Graph of Flagged Content Updates" style="max-width: 100%; height: auto; margin: 1rem 0;">
+      <p>
+        The chart above shows the timeframes in which students returned to update their flagged content after the initial scan. Most updates occurred on the same day the content was flagged, accounting for <strong>1,784 posts</strong>. A smaller number of updates happened after more than a week (<strong>730 posts</strong>), with minimal activity observed the next day (<strong>45 posts</strong>) or within a week (<strong>25 posts</strong>).
+      </p>
+      <p><strong>Key Insight:</strong> The majority of user updates happen immediately on the same day, while a smaller secondary group returns after an extended period of over a week.</p>
+
+      <h2>Conclusion</h2>
+      <p>
+        I analyzed how students interact with flagged content and the actions they take, such as deleting, ignoring, or reporting it. The majority of flagged content is addressed on the same day, while a smaller portion of students return after a week or more to address flagged content.
+      </p>
+      <p>
+        My analysis revealed that <strong>10%</strong> of flagged content is ignored, compared to only <strong>4%</strong> being deleted. This suggests that much of the flagged content is not deemed inappropriate, or my flagging system might be overly sensitive.
+      </p>
+
+      <h2>Potential Next Steps</h2>
+      <ul>
+        <li>
+          <strong>Review Flagging Sensitivity:</strong> 
+          With <strong>10%</strong> of flagged content being ignored and only <strong>4%</strong> deleted, I plan to revisit the sensitivity of the flagging system to reduce false positives and ensure truly inappropriate content is flagged.
+        </li>
+        <li>
+          <strong>User Education and Engagement:</strong> 
+          The low percentage of reported content (<strong>0.04%</strong>) suggests that students may not fully understand the reporting feature. I propose introducing new engagement strategies, such as a <strong>"Train our AI Day"</strong>, to encourage students to interact with the system effectively while learning about the report feature. Additional incentives might help boost participation.
+        </li>
+        <li>
+          <strong>Content Moderation Tools:</strong> 
+          I aim to implement more intuitive tools for students to moderate their content, such as a swipe interface similar to apps like Tinder, to make moderation faster and more engaging.
+        </li>
+        <li>
+          <strong>Deep Dive into Ignored Content:</strong> 
+          I plan to investigate why a significant portion of flagged content is ignored by analyzing patterns or surveying users to understand their choices.
+        </li>
+        <li>
+          <strong>Monitor Long-Term Engagement:</strong> 
+          Most users only return to update content once. I propose sending email reminders about pending flagged content to encourage further engagement.
+        </li>
+      </ul>
 
       <h3>Explore the Full Jupyter Notebook</h3>
       <ul>
