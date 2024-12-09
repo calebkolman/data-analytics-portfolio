@@ -17,20 +17,28 @@
     <section id="python-project">
       <h2>About This Project</h2>
       <p>
-        This project uses Python to analyze and visualize school-related content data. The analysis highlights trends, outliers, and actionable insights using libraries like Pandas, Matplotlib, and Seaborn.
+        This project leverages Python for analyzing flagged content updates among students. Using libraries like Pandas, Matplotlib, and Seaborn, we uncover trends and insights in user behavior.
       </p>
 
-      <h3>Explore the Jupyter Notebook</h3>
+      <h2>Data Visualization with Summary</h2>
+      <h3>Bar Graph 1</h3>
+      <p>
+        The chart below shows the timeframes in which students returned to update their flagged content after the initial scan:
+      </p>
+      <ul>
+        <li><strong>Same Day Updates:</strong> The majority of updates occurred on the same day the content was flagged, accounting for <strong>1,784 posts</strong>.</li>
+        <li><strong>Over a Week:</strong> A smaller number of updates happened after more than a week, accounting for <strong>730 posts</strong>.</li>
+        <li><strong>Next Day:</strong> Minimal activity was observed for updates the next day (<strong>45 posts</strong>).</li>
+        <li><strong>Within a Week:</strong> A very small group returned to update their content within a week (<strong>25 posts</strong>).</li>
+      </ul>
+      <p><strong>Key Insight:</strong> The bulk of user updates happen immediately on the same day, with a smaller secondary group returning after an extended period of over a week.</p>
+      <img src="notebooks/bar_graph_flagged_content_updates.png" alt="Bar Graph of Flagged Content Updates" style="max-width: 100%; height: auto; margin: 1rem 0;">
+
+      <h3>Explore the Full Jupyter Notebook</h3>
       <ul>
         <li><a href="https://nbviewer.org/github/calebkolman/data-analytics-portfolio/blob/main/notebooks/School_Content_Analysis.ipynb" target="_blank">View on Nbviewer</a></li>
         <li><a href="https://github.com/calebkolman/data-analytics-portfolio/blob/main/notebooks/School_Content_Analysis.ipynb" target="_blank">View on GitHub</a></li>
       </ul>
-
-      <h3>Key Visualizations</h3>
-      <img src="notebooks/boxplot_updated_content.png" alt="Boxplot of Updated Content" style="max-width: 100%; height: auto;">
-      <p>
-        Above: A boxplot visualization highlighting trends in updated school content.
-      </p>
     </section>
   </main>
   <footer>
