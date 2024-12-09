@@ -30,12 +30,12 @@
         </li>
         <li>
           <strong>Average Percent of Deleted Content (Flagged Content):</strong> 
-          Only <strong>4%</strong> of flagged content was deleted, indicating that a small proportion of flagged content is deemed inappropriate. This highlights that my system’s flagging mechanism may be overly sensitive, resulting in false positives.
+          Only <strong>4%</strong> of flagged content was deleted, indicating that a small proportion of flagged content is deemed inappropriate. This highlights that the system’s flagging mechanism may be overly sensitive, resulting in false positives.
         </li>
       </ul>
 
       <h3>Bar Graph 1 with Explanation</h3>
-      <img src="notebooks/bar_graph_flagged_content_updates.png" alt="Bar Graph of Flagged Content Updates" style="max-width: 100%; height: auto; margin: 1rem 0;">
+      <img src="notebooks/updated_days.png" alt="Bar Graph of Flagged Content Updates" style="max-width: 100%; height: auto; margin: 1rem 0;">
       <p>
         The chart above shows the timeframes in which students returned to update their flagged content after the initial scan. Most updates occurred on the same day the content was flagged, accounting for <strong>1,784 posts</strong>. A smaller number of updates happened after more than a week (<strong>730 posts</strong>), with minimal activity observed the next day (<strong>45 posts</strong>) or within a week (<strong>25 posts</strong>).
       </p>
@@ -73,9 +73,62 @@
         </li>
       </ul>
 
+      <h2>Python Code Showcase</h2>
+<p>
+  I utilized Python extensively to analyze and visualize the dataset. Here are a few snippets demonstrating exploratory data analysis (EDA), mathematical insights, and visualizations:
+</p>
+
+<h3>Exploratory Data Analysis</h3>
+<pre><code>
+import pandas as pd
+
+# Load the dataset
+df = pd.read_csv('content_data.csv')
+
+# Quick overview of the data
+print(df.head())
+
+# Summary statistics
+print(df.describe())
+
+# Identify flagged content
+flagged_content = df[df['is_flagged'] == True]
+print(f"Flagged content count: {len(flagged_content)}")
+</code></pre>
+
+<h3>Mathematical Insights</h3>
+<pre><code>
+# Calculate percentage of flagged and deleted content
+total_posts = len(df)
+flagged_percentage = (len(flagged_content) / total_posts) * 100
+deleted_flagged_content = flagged_content[flagged_content['is_deleted'] == True]
+deleted_percentage = (len(deleted_flagged_content) / len(flagged_content)) * 100
+
+print(f"Flagged Content: {flagged_percentage:.2f}%")
+print(f"Deleted Flagged Content: {deleted_percentage:.2f}%")
+</code></pre>
+
+<h3>Data Visualization</h3>
+<pre><code>
+import matplotlib.pyplot as plt
+
+# Bar chart for content updates
+update_counts = df['update_timeframe'].value_counts()
+update_counts.plot(kind='bar', color='skyblue', figsize=(10, 6))
+plt.title('Flagged Content Updates by Timeframe')
+plt.xlabel('Timeframe')
+plt.ylabel('Number of Updates')
+plt.savefig('notebooks/bar_graph_flagged_content_updates.png')
+plt.show()
+</code></pre>
+
+<p>
+  These code snippets demonstrate my ability to perform data wrangling, statistical calculations, and create meaningful visualizations that drive actionable insights.
+</p>
+
+
       <h3>Explore the Full Jupyter Notebook</h3>
       <ul>
-        <li><a href="https://nbviewer.org/github/calebkolman/data-analytics-portfolio/blob/main/notebooks/School_Content_Analysis.ipynb" target="_blank">View on Nbviewer</a></li>
         <li><a href="https://github.com/calebkolman/data-analytics-portfolio/blob/main/notebooks/School_Content_Analysis.ipynb" target="_blank">View on GitHub</a></li>
       </ul>
     </section>
