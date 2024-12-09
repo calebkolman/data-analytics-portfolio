@@ -25,10 +25,10 @@
         </p>
         <h4>Highlights:</h4>
         <ul>
-          <li>Aggregations: Counts distinct content, flagged content, and deleted content.</li>
-          <li>Joins: Combines BusinessCustomer, Business, and Content tables.</li>
-          <li>Filtering: Focuses only on businesses with active status.</li>
-          <li>Grouping: Groups results by business customer ID and name.</li>
+          <li><strong>Aggregations:</strong> Counts distinct content, flagged content, and deleted content.</li>
+          <li><strong>Joins:</strong> Combines BusinessCustomer, Business, and Content tables.</li>
+          <li><strong>Filtering:</strong> Focuses only on businesses with active status.</li>
+          <li><strong>Grouping:</strong> Groups results by business customer ID and name.</li>
         </ul>
         <pre><code>
 SELECT
@@ -60,9 +60,9 @@ ORDER BY
         </p>
         <h4>Highlights:</h4>
         <ul>
-          <li>Conditional Aggregation: Uses SUM(CASE...) to count users per platform.</li>
-          <li>Deduplication: Ensures only unique users per platform are considered.</li>
-          <li>Scalability: Easily extendable for additional platforms.</li>
+          <li><strong>Conditional Aggregation:</strong> Uses SUM(CASE...) to count users per platform.</li>
+          <li><strong>Deduplication:</strong> Ensures only unique users per platform are considered.</li>
+          <li><strong>Scalability:</strong> Easily extendable for additional platforms.</li>
         </ul>
         <pre><code>
 SELECT 
@@ -83,9 +83,9 @@ FROM
         </p>
         <h4>Highlights:</h4>
         <ul>
-          <li>Date Aggregations: Groups by year and month.</li>
-          <li>Averages: Divides distinct content by the number of months for precise metrics.</li>
-          <li>Filtering: Targets only content from 2024.</li>
+          <li><strong>Date Aggregations:</strong> Groups by year and month.</li>
+          <li><strong>Averages:</strong> Divides distinct content by the number of months for precise metrics.</li>
+          <li><strong>Filtering:</strong> Targets only content from 2024.</li>
         </ul>
         <pre><code>
 SELECT
@@ -111,10 +111,10 @@ ORDER BY
         </p>
         <h4>Highlights:</h4>
         <ul>
-          <li>CTE: Organizes a list of specific business IDs for clarity and reusability.</li>
-          <li>Joins: Combines BusinessCustomer and Business tables.</li>
-          <li>Filtering: Focuses only on the stored business IDs using the IN clause.</li>
-          <li>Aggregations: Counts customers and retrieves invitations sent.</li>
+          <li><strong>CTE:</strong> Organizes a list of specific business IDs for clarity and reusability.</li>
+          <li><strong>Joins:</strong> Combines BusinessCustomer and Business tables.</li>
+          <li><strong>Filtering:</strong> Focuses only on the stored business IDs using the IN clause.</li>
+          <li><strong>Aggregations:</strong> Counts customers and retrieves invitations sent.</li>
         </ul>
         <pre><code>
 WITH stored_business_ids AS (
@@ -132,4 +132,25 @@ WITH stored_business_ids AS (
 )
 
 SELECT 
-   
+    bc."businessId", 
+    COUNT(bc."id") AS total_business_customers,
+    b."invitationsSent"
+FROM 
+    public."BusinessCustomer" bc
+INNER JOIN 
+    public."Business" b ON bc."businessId" = b."id"
+WHERE 
+    bc."businessId" IN (SELECT "business_id" FROM stored_business_ids)
+GROUP BY 
+    bc."businessId", b."invitationsSent"
+ORDER BY 
+    bc."businessId";
+        </code></pre>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Caleb Kolman. All rights reserved.</p>
+  </footer>
+</body>
+</html>
