@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Queries</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>SQL Code Samples</h1>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+  <main>
+    <section id="sql-examples">
+      <h2>Ad Hoc SQL Queries</h2>
+
+      <!-- Example 1 -->
+      <div class="project">
+        <h3>Analyzing Business User Content</h3>
+        <p>
+          This query retrieves counts of content scanned, flagged, and deleted for each active business user.
+        </p>
+        <h4>Highlights:</h4>
+        <ul>
+          <li>Aggregations: Counts distinct content, flagged content, and deleted content.</li>
+          <li>Joins: Combines BusinessCustomer, Business, and Content tables.</li>
+          <li>Filtering: Focuses only on businesses with active status.</li>
+          <li>Grouping: Groups results by business customer ID and name.</li>
+        </ul>
+        <pre><code>
+SELECT
+    bc."userId" AS business_customer_id,
+    b."name" AS business_name,
+    COUNT(DISTINCT c."id") AS num_scanned_content,
+    COUNT(DISTINCT CASE WHEN c."isFlagged" = true THEN c."id" END) AS num_flagged_content,
+    COUNT(DISTINCT CASE WHEN c."isDeleted" = true THEN c."id" END) AS num_deleted_content
+FROM
+    public."BusinessCustomer" AS bc
+LEFT JOIN
+    public."Business" AS b ON bc."businessId" = b."id"
+LEFT JOIN
+    public."Content" AS c ON bc."userId" = c."userId"
+WHERE
+    b."businessStatus" = 'Active'
+GROUP BY
+    bc."userId", b."name"
+ORDER BY
+    business_customer_id;
+        </code></pre>
+      </div>
+
+      <!-- Example 2 -->
+      <div class="project">
+        <h3>Counting Social Media Users</h3>
+        <p>
+          This query calculates the number of distinct users connected to each social media platform.
+        </p>
+        <h4>Highlights:</h4>
+        <ul>
+          <li>Conditional Aggregation: Uses SUM(CASE...) to count users per platform.</li>
+          <li>Deduplication: Ensures only unique users per platform are considered.</li>
+          <li>Scalability: Easily extendable for additional platforms.</li>
+        </ul>
+        <pre><code>
+SELECT 
+    SUM(CASE WHEN "origin" = 'Facebook' THEN 1 ELSE 0 END) AS "FacebookUsers",
+    SUM(CASE WHEN "origin" = 'Twitter' THEN 1 ELSE 0 END) AS "TwitterUsers",
+    SUM(CASE WHEN "origin" = 'Instagram' THEN 1 ELSE 0 END) AS "InstagramUsers",
+    SUM(CASE WHEN "origin" = 'Tiktok' THEN 1 ELSE 0 END) AS "TiktokUsers"
+FROM 
+    (SELECT DISTINCT "userId", "origin" FROM "Content") AS distinct_origins;
+        </code></pre>
+      </div>
+
+      <!-- Example 3 -->
+      <div class="project">
+        <h3>Content Analysis for 2024</h3>
+        <p>
+          This query calculates the average number of distinct pieces of content scanned each month in 2024.
+        </p>
+        <h4>Highlights:</h4>
+        <ul>
+          <li>Date Aggregations: Groups by year and month.</li>
+          <li>Averages: Divides distinct content by the number of months for precise metrics.</li>
+          <li>Filtering: Targets only content from 2024.</li>
+        </ul>
+        <pre><code>
+SELECT
+    EXTRACT(YEAR FROM ca."createdAt") AS "Year",
+    EXTRACT(MONTH FROM ca."createdAt") AS "Month",
+    COUNT(DISTINCT ca."contentId") / COUNT(DISTINCT DATE_TRUNC('month', ca."createdAt")) AS "AverageDistinctContentIdPerMonth"
+FROM
+    public."ContentAnalysis" AS ca
+WHERE
+    EXTRACT(YEAR FROM ca."createdAt") = 2024
+GROUP BY
+    "Year", "Month"
+ORDER BY
+    "Year", "Month";
+        </code></pre>
+      </div>
+
+      <!-- Example 4 -->
+      <div class="project">
+        <h3>Count Business Customers and Invitations Sent (Using CTE)</h3>
+        <p>
+          This query uses a Common Table Expression (CTE) to store a predefined list of business IDs. It counts the number of business customers and shows the number of invitations sent for each business.
+        </p>
+        <h4>Highlights:</h4>
+        <ul>
+          <li>CTE: Organizes a list of specific business IDs for clarity and reusability.</li>
+          <li>Joins: Combines BusinessCustomer and Business tables.</li>
+          <li>Filtering: Focuses only on the stored business IDs using the IN clause.</li>
+          <li>Aggregations: Counts customers and retrieves invitations sent.</li>
+        </ul>
+        <pre><code>
+WITH stored_business_ids AS (
+    SELECT unnest(ARRAY[
+        'clruu4g791555210rx6o4j80i8',
+        'cls97op3h286990tqrm4unfct7',
+        'cltnbtzkr338120sntygzb6erm',
+        'cl8bnjcvq508920is6o66y9lqf',
+        'clnenbp7b49930is6e3erhaxk',
+        'clvl10inh3034200tof87pwluz0',
+        'clsoqpj5g290410npgjactmsz',
+        'cluvi4zpy300170so88j83clac',
+        'clu05dofk862530srmwbwougje'
+    ]) AS "business_id"
+)
+
+SELECT 
+   
