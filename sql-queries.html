@@ -199,20 +199,7 @@ WHERE "type" IS NOT NULL;
         </code></pre>
 
         <!-- Step 4 -->
-        <h4>Step 4: Fill Missing Values with Defaults</h4>
-        <h4>Highlights:</h4>
-        <ul>
-  <li><strong>Default Values:</strong> Sets <code>type</code> to <code>'UNKNOWN'</code> for rows with <code>NULL</code> values.</li>
-  <li><strong>Standardization:</strong> Ensures no missing values in the <code>type</code> column.</li>
-</ul>
-        <pre><code>
-UPDATE public."ContentAnalysis"
-SET "type" = 'UNKNOWN'
-WHERE "type" IS NULL;
-        </code></pre>
-
-        <!-- Step 5 -->
-        <h4>Step 5: Verify Data Consistency</h4>
+        <h4>Step 4: Verify Data Consistency</h4>
         <h4>Highlights:</h4>
         <ul>
   <li><strong>Validation:</strong> Checks if <code>updatedAt</code> is earlier than <code>createdAt</code>.</li>
