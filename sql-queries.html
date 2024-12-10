@@ -15,21 +15,19 @@
   </header>
   <main>
     <section id="sql-examples">
-      <h2>Ad Hoc SQL Queries</h2>
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#joins">Joins</a></li>
+        <li><a href="#aggregates">Aggregates</a></li>
+        <li><a href="#cte">Common Table Expressions (CTEs)</a></li>
+        <li><a href="#partitions">Partitions</a></li>
+        <li><a href="#data-cleaning">Data Cleaning Techniques</a></li>
+      </ul>
 
-      <!-- Example 1 -->
-      <div class="project">
-        <h3>Analyzing Business User Content</h3>
-        <p>
-          This query retrieves counts of content scanned, flagged, and deleted for each active business user.
-        </p>
-        <h4>Highlights:</h4>
-        <ul>
-          <li><strong>Aggregations:</strong> Counts distinct content, flagged content, and deleted content.</li>
-          <li><strong>Joins:</strong> Combines BusinessCustomer, Business, and Content tables.</li>
-          <li><strong>Filtering:</strong> Focuses only on businesses with active status.</li>
-          <li><strong>Grouping:</strong> Groups results by business customer ID and name.</li>
-        </ul>
+      <!-- Example 1: Joins -->
+      <div id="joins" class="project">
+        <h3>Joins</h3>
+        <p>This query retrieves counts of content scanned, flagged, and deleted for each active business user.</p>
         <pre><code>
 SELECT
     bc."userId" AS business_customer_id,
@@ -52,18 +50,10 @@ ORDER BY
         </code></pre>
       </div>
 
-      <!-- Example 2 -->
-      <div class="project">
-        <h3>Counting Social Media Users</h3>
-        <p>
-          This query calculates the number of distinct users connected to each social media platform.
-        </p>
-        <h4>Highlights:</h4>
-        <ul>
-          <li><strong>Conditional Aggregation:</strong> Uses SUM(CASE...) to count users per platform.</li>
-          <li><strong>Deduplication:</strong> Ensures only unique users per platform are considered.</li>
-          <li><strong>Scalability:</strong> Easily extendable for additional platforms.</li>
-        </ul>
+      <!-- Example 2: Aggregates -->
+      <div id="aggregates" class="project">
+        <h3>Aggregates</h3>
+        <p>This query calculates the number of distinct users connected to each social media platform.</p>
         <pre><code>
 SELECT 
     SUM(CASE WHEN "origin" = 'Facebook' THEN 1 ELSE 0 END) AS "FacebookUsers",
@@ -75,76 +65,108 @@ FROM
         </code></pre>
       </div>
 
-      <!-- Example 3 -->
-      <div class="project">
-        <h3>Content Analysis for 2024</h3>
-        <p>
-          This query calculates the average number of distinct pieces of content scanned each month in 2024.
-        </p>
-        <h4>Highlights:</h4>
-        <ul>
-          <li><strong>Date Aggregations:</strong> Groups by year and month.</li>
-          <li><strong>Averages:</strong> Divides distinct content by the number of months for precise metrics.</li>
-          <li><strong>Filtering:</strong> Targets only content from 2024.</li>
-        </ul>
+      <!-- Example 3: Common Table Expressions (CTEs) -->
+      <div id="cte" class="project">
+        <h3>Common Table Expressions (CTEs)</h3>
+        <p>This query uses a CTE to clean duplicate rows in the dataset.</p>
         <pre><code>
-SELECT
-    EXTRACT(YEAR FROM ca."createdAt") AS "Year",
-    EXTRACT(MONTH FROM ca."createdAt") AS "Month",
-    COUNT(DISTINCT ca."contentId") / COUNT(DISTINCT DATE_TRUNC('month', ca."createdAt")) AS "AverageDistinctContentIdPerMonth"
-FROM
-    public."ContentAnalysis" AS ca
-WHERE
-    EXTRACT(YEAR FROM ca."createdAt") = 2024
-GROUP BY
-    "Year", "Month"
-ORDER BY
-    "Year", "Month";
+WITH cte AS (
+    SELECT 
+        "id",
+        ROW_NUMBER() OVER (
+            PARTITION BY "contentId", "userId", "type"
+            ORDER BY "createdAt"
+        ) AS row_num
+    FROM public."ContentAnalysis"
+)
+DELETE FROM public."ContentAnalysis"
+WHERE "id" IN (
+    SELECT "id" 
+    FROM cte 
+    WHERE row_num > 1
+);
         </code></pre>
       </div>
 
-      <!-- Example 4 -->
-      <div class="project">
-        <h3>Count Business Customers and Invitations Sent (Using CTE)</h3>
-        <p>
-          This query uses a Common Table Expression (CTE) to store a predefined list of business IDs. It counts the number of business customers and shows the number of invitations sent for each business.
-        </p>
-        <h4>Highlights:</h4>
-        <ul>
-          <li><strong>CTE:</strong> Organizes a list of specific business IDs for clarity and reusability.</li>
-          <li><strong>Joins:</strong> Combines BusinessCustomer and Business tables.</li>
-          <li><strong>Filtering:</strong> Focuses only on the stored business IDs using the IN clause.</li>
-          <li><strong>Aggregations:</strong> Counts customers and retrieves invitations sent.</li>
-        </ul>
+      <!-- Example 4: Partitions -->
+      <div id="partitions" class="project">
+        <h3>Partitions</h3>
+        <p>This query demonstrates how to use partitions for row-level operations, such as keeping only the earliest created record.</p>
         <pre><code>
-WITH stored_business_ids AS (
-    SELECT unnest(ARRAY[
-        'clruu4g791555210rx6o4j80i8',
-        'cls97op3h286990tqrm4unfct7',
-        'cltnbtzkr338120sntygzb6erm',
-        'cl8bnjcvq508920is6o66y9lqf',
-        'clnenbp7b49930is6e3erhaxk',
-        'clvl10inh3034200tof87pwluz0',
-        'clsoqpj5g290410npgjactmsz',
-        'cluvi4zpy300170so88j83clac',
-        'clu05dofk862530srmwbwougje'
-    ]) AS "business_id"
+WITH cte AS (
+    SELECT 
+        "id",
+        ROW_NUMBER() OVER (
+            PARTITION BY "contentId", "userId", "type"
+            ORDER BY "createdAt"
+        ) AS row_num
+    FROM public."ContentAnalysis"
 )
+DELETE FROM public."ContentAnalysis"
+WHERE "id" IN (
+    SELECT "id" 
+    FROM cte 
+    WHERE row_num > 1
+);
+        </code></pre>
+      </div>
 
-SELECT 
-    bc."businessId", 
-    COUNT(bc."id") AS total_business_customers,
-    b."invitationsSent"
-FROM 
-    public."BusinessCustomer" bc
-INNER JOIN 
-    public."Business" b ON bc."businessId" = b."id"
-WHERE 
-    bc."businessId" IN (SELECT "business_id" FROM stored_business_ids)
-GROUP BY 
-    bc."businessId", b."invitationsSent"
-ORDER BY 
-    bc."businessId";
+      <!-- Example 5: Data Cleaning Techniques -->
+      <div id="data-cleaning" class="project">
+        <h3>Data Cleaning Techniques</h3>
+        <p>This series of SQL commands demonstrates how to clean and standardize data.</p>
+
+        <!-- Step 1 -->
+        <h4>Step 1: Remove Rows with Missing Critical Columns</h4>
+        <pre><code>
+DELETE FROM public."ContentAnalysis"
+WHERE "contentId" IS NULL
+   OR "userId" IS NULL
+   OR "type" IS NULL;
+        </code></pre>
+
+        <!-- Step 2 -->
+        <h4>Step 2: Handle Duplicate Rows</h4>
+        <pre><code>
+WITH cte AS (
+    SELECT 
+        "id",
+        ROW_NUMBER() OVER (
+            PARTITION BY "contentId", "userId", "type"
+            ORDER BY "createdAt"
+        ) AS row_num
+    FROM public."ContentAnalysis"
+)
+DELETE FROM public."ContentAnalysis"
+WHERE "id" IN (
+    SELECT "id" 
+    FROM cte 
+    WHERE row_num > 1
+);
+        </code></pre>
+
+        <!-- Step 3 -->
+        <h4>Step 3: Handle Inconsistent Data in the "type" Column</h4>
+        <pre><code>
+UPDATE public."ContentAnalysis"
+SET "type" = UPPER("type")
+WHERE "type" IS NOT NULL;
+        </code></pre>
+
+        <!-- Step 4 -->
+        <h4>Step 4: Fill Missing Values with Defaults</h4>
+        <pre><code>
+UPDATE public."ContentAnalysis"
+SET "type" = 'UNKNOWN'
+WHERE "type" IS NULL;
+        </code></pre>
+
+        <!-- Step 5 -->
+        <h4>Step 5: Verify Data Consistency</h4>
+        <pre><code>
+SELECT * 
+FROM public."ContentAnalysis"
+WHERE "updatedAt" < "createdAt";
         </code></pre>
       </div>
     </section>
