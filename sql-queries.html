@@ -28,6 +28,13 @@
       <div id="joins" class="project">
         <h3>Joins</h3>
         <p>This query retrieves counts of content scanned, flagged, and deleted for each active business user.</p>
+        <h4>Highlights:</h4>
+        <ul>
+  <li><strong>Joins:</strong> Combines <code>BusinessCustomer</code>, <code>Business</code>, and <code>Content</code> tables.</li>
+  <li><strong>Filtering:</strong> Focuses only on businesses with an active status.</li>
+  <li><strong>Aggregations:</strong> Counts distinct content scanned, flagged, and deleted for each business customer.</li>
+  <li><strong>Grouping:</strong> Groups results by business customer ID and business name for clarity.</li>
+</ul>
         <pre><code>
 SELECT
     bc."userId" AS business_customer_id,
@@ -54,6 +61,12 @@ ORDER BY
       <div id="aggregates" class="project">
         <h3>Aggregates</h3>
         <p>This query calculates the number of distinct users connected to each social media platform.</p>
+        <h4>Highlights:</h4>
+        <ul>
+  <li><strong>Conditional Aggregation:</strong> Uses <code>SUM(CASE...)</code> to count users per platform.</li>
+  <li><strong>Deduplication:</strong> Ensures only unique users per platform are considered.</li>
+  <li><strong>Scalability:</strong> Can be extended easily for additional platforms.</li>
+</ul>
         <pre><code>
 SELECT 
     SUM(CASE WHEN "origin" = 'Facebook' THEN 1 ELSE 0 END) AS "FacebookUsers",
@@ -69,6 +82,13 @@ FROM
       <div id="cte" class="project">
         <h3>Common Table Expressions (CTEs)</h3>
         <p>This query uses a CTE to clean duplicate rows in the dataset.</p>
+        <h4>Highlights:</h4>
+        <ul>
+  <li><strong>CTE:</strong> Creates a temporary result set with row numbers for duplicate rows.</li>
+  <li><strong>Partitioning:</strong> Groups rows by <code>contentId</code>, <code>userId</code>, and <code>type</code> to identify duplicates.</li>
+  <li><strong>Row Numbering:</strong> Keeps the earliest entry based on the <code>createdAt</code> timestamp.</li>
+  <li><strong>Deletion:</strong> Removes rows where the row number exceeds 1, effectively deduplicating the dataset.</li>
+</ul>
         <pre><code>
 WITH cte AS (
     SELECT 
@@ -92,6 +112,14 @@ WHERE "id" IN (
       <div id="partitions" class="project">
         <h3>Partitions</h3>
         <p>This query demonstrates how to use partitions for row-level operations, such as keeping only the earliest created record.</p>
+        <h4>Highlights:</h4>
+        <ul>
+  <li><strong>CTE:</strong> Temporarily calculates row numbers for duplicate rows.</li>
+  <li><strong>Partitioning:</strong> Organizes duplicates by specific columns like <code>contentId</code>, <code>userId</code>, and <code>type</code>.</li>
+  <li><strong>Row Numbering:</strong> Identifies the earliest entry for each duplicate set.</li>
+  <li><strong>Deletion:</strong> Removes all rows except the first occurrence in each partition.</li>
+</ul>
+
         <pre><code>
 WITH cte AS (
     SELECT 
@@ -118,6 +146,10 @@ WHERE "id" IN (
 
         <!-- Step 1 -->
         <h4>Step 1: Remove Rows with Missing Critical Columns</h4>
+        <h4>Highlights:</h4>
+        <ul>
+  <li><strong>Filtering:</strong> Deletes rows where critical columns like <code>contentId</code>, <code>userId</code>, or <code>type</code> are <code>NULL</code>.</li>
+</ul>
         <pre><code>
 DELETE FROM public."ContentAnalysis"
 WHERE "contentId" IS NULL
@@ -127,6 +159,13 @@ WHERE "contentId" IS NULL
 
         <!-- Step 2 -->
         <h4>Step 2: Handle Duplicate Rows</h4>
+        <h4>Highlights:</h4>
+        <ul>
+  <li><strong>CTE:</strong> Identifies duplicate rows using row numbers.</li>
+  <li><strong>Partitioning:</strong> Groups rows by <code>contentId</code>, <code>userId</code>, and <code>type</code> to detect duplicates.</li>
+  <li><strong>Row Numbering:</strong> Keeps only the earliest row within each group.</li>
+  <li><strong>Deletion:</strong> Removes duplicate rows based on the row number.</li>
+</ul>
         <pre><code>
 WITH cte AS (
     SELECT 
@@ -147,6 +186,12 @@ WHERE "id" IN (
 
         <!-- Step 3 -->
         <h4>Step 3: Handle Inconsistent Data in the "type" Column</h4>
+        <h4>Highlights:</h4>
+        <ul>
+  <li><strong>Standardization:</strong> Converts all <code>type</code> values to uppercase for consistency.</li>
+  <li><strong>Filtering:</strong> Ensures only non-<code>NULL</code> <code>type</code> values are updated.</li>
+</ul>
+
         <pre><code>
 UPDATE public."ContentAnalysis"
 SET "type" = UPPER("type")
@@ -155,6 +200,11 @@ WHERE "type" IS NOT NULL;
 
         <!-- Step 4 -->
         <h4>Step 4: Fill Missing Values with Defaults</h4>
+        <h4>Highlights:</h4>
+        <ul>
+  <li><strong>Default Values:</strong> Sets <code>type</code> to <code>'UNKNOWN'</code> for rows with <code>NULL</code> values.</li>
+  <li><strong>Standardization:</strong> Ensures no missing values in the <code>type</code> column.</li>
+</ul>
         <pre><code>
 UPDATE public."ContentAnalysis"
 SET "type" = 'UNKNOWN'
@@ -163,6 +213,11 @@ WHERE "type" IS NULL;
 
         <!-- Step 5 -->
         <h4>Step 5: Verify Data Consistency</h4>
+        <h4>Highlights:</h4>
+        <ul>
+  <li><strong>Validation:</strong> Checks if <code>updatedAt</code> is earlier than <code>createdAt</code>.</li>
+  <li><strong>Anomaly Detection:</strong> Identifies records with logical inconsistencies in date fields.</li>
+</ul>
         <pre><code>
 SELECT * 
 FROM public."ContentAnalysis"
