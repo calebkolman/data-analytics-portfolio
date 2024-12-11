@@ -38,7 +38,7 @@
         </li>
       </ul>
 
-      <h3>Bar Graph 1 with Explanation</h3>
+      <h3>Bar Graph 1</h3>
       <img src="notebooks/updated_days.png" alt="Bar Graph of Flagged Content Updates" style="max-width: 100%; height: auto; margin: 1rem 0;">
       <p>
         The chart above shows the timeframes in which students returned to update their flagged content after the initial scan. Most updates occurred on the same day the content was flagged, accounting for <strong>1,784 posts</strong>. A smaller number of updates happened after more than a week (<strong>730 posts</strong>), with minimal activity observed the next day (<strong>45 posts</strong>) or within a week (<strong>25 posts</strong>).
@@ -52,6 +52,29 @@
       <p>
         My analysis revealed that <strong>10%</strong> of flagged content is ignored, compared to only <strong>4%</strong> being deleted. This suggests that much of the flagged content is not deemed inappropriate, or my flagging system might be overly sensitive.
       </p>
+
+    <h3>Bar Graph 2</h3>
+<img src="notebooks/python_thumbnail.png" alt="Bar Graph of Confidence Scores" style="max-width: 100%; height: auto; margin: 1rem 0;">
+<p>
+  The chart above illustrates the confidence scores of various content moderation categories, including <strong>toxicity, obscenity, insults, and polarizing content.</strong> 
+  Observations indicate that confidence levels across most categories are relatively low:
+</p>
+<ul>
+  <li><strong>Toxicity Confidence:</strong> The highest average score at <strong>0.45</strong>, indicating limited confidence in detecting toxic content.</li>
+  <li><strong>Obscene Content Confidence:</strong> Slightly lower, averaging <strong>0.42</strong>.</li>
+  <li><strong>Insults and Sexual Explicit Content:</strong> These categories show moderate scores of <strong>0.30</strong> and <strong>0.28</strong>, respectively.</li>
+  <li><strong>Polarizing and Identity Attacks:</strong> The lowest scores, averaging <strong>0.10</strong>, suggest significant challenges in detecting these content types.</li>
+</ul>
+<p><strong>Key Insight:</strong> The low confidence scores across categories suggest that the content moderation model may struggle to classify inappropriate content accurately. This could explain why <strong>10%</strong> of flagged content is ignored and only <strong>4%</strong> is deleted. A more robust model with improved confidence levels could help reduce ignored flagged content and improve deletion rates.</p>
+
+<h2>Conclusion</h2>
+<p>
+  The analysis reveals that low confidence scores are a likely contributor to the system's inability to distinguish inappropriate content effectively. This could lead users to ignore flagged content rather than act on it. Improving the model’s confidence through enhanced datasets, better training processes, and targeted feature engineering will be critical to achieving better content moderation outcomes.
+</p>
+<p>
+  By focusing on categories with the lowest confidence, such as polarizing content and identity attacks, we can ensure that the system more accurately flags inappropriate material, resulting in higher deletion rates and fewer ignored flags.
+</p>
+
 
       <h2>Potential Next Steps</h2>
       <ul>
