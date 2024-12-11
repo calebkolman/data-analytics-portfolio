@@ -193,40 +193,50 @@ a:hover {
 /* Portfolio Grid */
 .portfolio-grid {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+  justify-content: center; /* Center the grid */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  gap: 2rem; /* Add spacing between items */
+  margin: 2rem 0; /* Add spacing around the grid */
 }
 
 .portfolio-grid a {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Stack image and text vertically */
   align-items: center;
   text-decoration: none;
   color: #333;
-  width: 250px; /* Standardize width */
+  width: 200px; /* Standardize width */
 }
 
 .portfolio-grid img {
-  width: 100%; /* Make all images fill the width of their container */
-  height: auto; /* Maintain aspect ratio */
-  max-height: 150px; /* Optional: Set a maximum height for consistency */
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  object-fit: cover; /* Ensures the images fill their containers */
+  width: 100%; /* Ensure images fill the container */
+  height: 150px; /* Set a consistent height for all thumbnails */
+  object-fit: cover; /* Crop images consistently */
+  border-radius: 8px; /* Add rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .portfolio-grid img:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Slight zoom effect on hover */
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .portfolio-grid p {
-  margin-top: 0.5rem;
+  margin-top: 0.5rem; /* Add spacing above text */
+  font-size: 1rem;
   font-weight: bold;
-  text-align: center;
+  text-align: center; /* Center the text */
+  color: #555; /* Slightly softer color */
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .portfolio-grid a {
+    width: 100%; /* Make items take full width on smaller screens */
+  }
+}
+
 
 
 
