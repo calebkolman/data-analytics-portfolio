@@ -108,6 +108,64 @@ pre code {
   font-family: Consolas, 'Courier New', monospace;
   color: #333;
 }
+/* ==============================
+   Python Project
+============================== */
+/* Main content styles */
+main {
+  max-width: 900px; /* Limit the width for readability */
+  margin: 0 auto; /* Center the content */
+  padding: 2rem; /* Add padding around the content */
+  line-height: 1.6; /* Improve line spacing for better readability */
+}
+
+/* Section padding for better spacing */
+section {
+  padding: 2rem 0;
+}
+
+/* Skip Button Styling */
+.skip-button {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.skip-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Preformatted code block styling */
+pre {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto; /* Prevent horizontal overflow */
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+pre code {
+  font-family: Consolas, 'Courier New', monospace;
+  color: #333;
+}
+
+/* Image styling */
+img {
+  display: block;
+  max-width: 100%;
+  margin: 1rem auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 
 /* ==============================
    Portfolio Section
