@@ -1,4 +1,6 @@
-/* Root Variables */
+/* ==============================
+   Root Variables
+============================== */
 :root {
   --primary-color: #00bcd4;
   --secondary-color: #333;
@@ -6,7 +8,9 @@
   --text-color: #333;
 }
 
-/* Base Styles */
+/* ==============================
+   Global Styles
+============================== */
 body {
   font-family: 'Roboto', Arial, sans-serif;
   margin: 0;
@@ -19,7 +23,25 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Header Styles */
+img {
+  display: block;
+  max-width: 100%;
+  margin: 1rem auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+a {
+  transition: transform 0.2s ease;
+}
+
+a:hover {
+  transform: scale(1.05);
+}
+
+/* ==============================
+   Header Styles
+============================== */
 header {
   position: sticky;
   top: 0;
@@ -48,12 +70,21 @@ nav a:hover {
   color: var(--primary-color);
 }
 
-/* Section Styles */
+/* ==============================
+   Main Content Styles
+============================== */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+/* ==============================
+   Section Styles
+============================== */
 section {
-  padding: 3rem 5rem;
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  padding: 2rem 0;
 }
 
 section:nth-child(even) {
@@ -64,175 +95,56 @@ section:nth-child(odd) {
   background-color: #ffffff;
 }
 
-/* Footer Styles */
-footer {
-  background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-  color: var(--light-color);
-  padding: 2rem;
-  text-align: center;
-}
-
-footer a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  section {
-    padding: 2rem;
-  }
-
-  header h1 {
-    font-size: 2rem;
-  }
-
-  nav a {
-    font-size: 0.9rem;
-  }
-}
-
-/* Animations and Interactions */
-a {
-  transition: transform 0.2s ease;
-}
-
-a:hover {
-  transform: scale(1.05);
-}
-
-.project ul {
-  list-style: square;
-  margin-left: 20px;
-  padding-left: 20px;
-}
-
-.project ul li {
-  margin-bottom: 10px;
-  color: #555;
-}
-
-.project h4 {
-  margin-top: 20px;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-
-#python-project {
-  padding: 2rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#python-project img {
-  margin: 1rem 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-/* Portfolio Section */
-#portfolio {
-  text-align: center;
-  padding: 2rem;
-}
-
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
+pre {
+  background: #f8f9fa;
   padding: 1rem;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
 }
 
-.portfolio-grid a {
-  text-decoration: none;
+pre code {
+  font-family: Consolas, 'Courier New', monospace;
   color: #333;
 }
 
-.portfolio-grid img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.portfolio-grid img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.portfolio-grid p {
-  margin-top: 0.5rem;
-  font-weight: bold;
-}
-
-.skip-button {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  color: white;
-  background-color: #007bff;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.skip-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-/* Portfolio Grid */
+/* ==============================
+   Portfolio Section
+============================== */
 .portfolio-grid {
   display: flex;
-  justify-content: center; /* Center the grid */
-  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
-  gap: 2rem; /* Add spacing between items */
-  margin: 2rem 0; /* Add spacing around the grid */
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2rem 0;
 }
 
 .portfolio-grid a {
   display: flex;
-  flex-direction: column; /* Stack image and text vertically */
+  flex-direction: column;
   align-items: center;
   text-decoration: none;
   color: #333;
-  width: 200px; /* Standardize width */
+  width: 200px;
 }
 
-.portfolio-grid img {
-  width: 100%; /* Ensure images fill the container */
-  height: 150px; /* Set a consistent height for all thumbnails */
-  object-fit: cover; /* Crop images consistently */
-  border-radius: 8px; /* Add rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+.portfolio-grid img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
 
-.portfolio-grid img:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
+.portfolio-grid img:hover { transform: scale(1.05); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
 
-.portfolio-grid p {
-  margin-top: 0.5rem; /* Add spacing above text */
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center; /* Center the text */
-  color: #555; /* Slightly softer color */
-}
+.portfolio-grid p { margin-top: 0.5rem; font-size: 1rem; font-weight: bold; text-align: center; color: #555; }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .portfolio-grid a {
-    width: 100%; /* Make items take full width on smaller screens */
-  }
-}
+/* ============================== Skip Button ============================== */ 
+
+.skip-button { display: inline-block; margin: 1rem 0; padding: 0.5rem 1rem; font-size: 1rem; color: white; background-color: #007bff; text-decoration: none; border-radius: 5px; transition: background-color 0.3s ease, transform 0.2s ease; }
+
+.skip-button:hover { background-color: #0056b3; transform: scale(1.05); }
+
+/* ============================== Footer Styles ============================== */ 
+
+footer { background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); color: var(--light-color); padding: 2rem; text-align: center; }
+
+footer a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+
+footer a:hover { text-decoration: underline; }
