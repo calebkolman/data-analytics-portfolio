@@ -3,30 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Machine Learning Project</title>
+  <title>Machine Learning - Predicting Student Grades</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Machine Learning: Predictive Analysis</h1>
+    <h1>Machine Learning - Predicting Student Grades</h1>
     <nav>
       <a href="index.html">Home</a>
     </nav>
   </header>
   <main>
-    <section id="ml-project">
-      <h2>Project Overview</h2>
+    <section id="objective">
+      <h2>Problem Framing & Big Picture</h2>
+      <p><strong>Problem:</strong> Many students may struggle in school due to a variety of factors, which can lead to poor grades and reduced educational and career opportunities.</p>
+      <p><strong>Solution:</strong> I propose a machine learning-based solution that analyzes a range of factors, including academic performance, attendance records, and socio-economic indicators, to predict a student's future academic performance. By identifying students who are predicted to have lower grades, we can proactively enroll them in tutoring programs tailored to their specific needs.</p>
+    </section>
+
+    <section id="approach">
+      <h2>Approach</h2>
+      <h3>Supervised / Offline Learning</h3>
+      <p><strong>Supervised Learning:</strong> The model learns from historical data on students, including features (like study habits, attendance, etc.) and their final grades, to predict future performance.</p>
+      <p><strong>Offline Learning:</strong> The model is trained on a collected set of data all at once, rather than continuously learning from new data.</p>
+
+      <h3>Regression Task</h3>
       <p>
-        This project showcases the implementation of machine learning models to predict outcomes and uncover patterns in data.
-        Techniques include regression, classification, and clustering.
+        This project involves a regression task to predict a student's specific final grade (a continuous value) based on various factors. Understanding the precise grade prediction allows for tailored interventions, as opposed to a simple pass/fail classification.
+      </p>
+    </section>
+
+    <section id="metrics">
+      <h2>Metrics to Measure Performance</h2>
+      <ul>
+        <li><strong>Mean Absolute Error (MAE):</strong> Provides a prediction of accuracy, with a lower MAE indicating better performance.</li>
+        <li><strong>Mean Squared Error (MSE):</strong> Measures the average squared difference between predicted and actual values. A lower MSE indicates better accuracy.</li>
+        <li><strong>Root Mean Squared Error (RMSE):</strong> The square root of MSE, offering an interpretable metric of prediction accuracy.</li>
+      </ul>
+    </section>
+
+    <section id="explanation">
+      <h2>Non-Technical Explanation</h2>
+      <p>
+        Imagine you have to get up early tomorrow morning. If you look at all of your habits today—like staying up late, eating junk food, and not drinking enough water—you may be able to predict whether you'll feel tired. We're applying a similar idea using machine learning to understand patterns in student performance, so we can foresee who might need external help before they begin to fail.
+      </p>
+    </section>
+
+    <section id="conclusion">
+      <h2>Conclusion</h2>
+      <p>
+        My initial goal was to leverage machine learning to proactively identify students at risk of underperforming, enabling timely interventions through targeted tutoring programs. By employing Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE) as success metrics, I assessed the performance of the regression model.
+      </p>
+      <p>
+        With an MAE of <strong>1.139</strong>, the predictions are, on average, approximately one grade point away from the actual grades. While this precision offers a practical means to pinpoint students at risk, an MSE of <strong>4.860</strong> and an RMSE of <strong>2.204</strong> suggest room for improvement.
+      </p>
+      <p>
+        Next steps include:
       </p>
       <ul>
-        <li><a href="https://github.com/calebkolman/machine-learning-project" target="_blank">View on GitHub</a></li>
+        <li>Iterating on the current model to reduce both MAE and RMSE.</li>
+        <li>Conducting a more in-depth feature importance analysis to identify key factors impacting student performance.</li>
+        <li>Exploring more advanced models or incorporating additional features for better predictions.</li>
       </ul>
+    </section>
+
+    <section id="access">
+      <h2>Access the Full Project</h2>
+      <p>This project is restricted. Please <a href="mailto:caleb.kolman.portfolio@gmail.com">contact me</a> to request access to the full Jupyter Notebook.</p>
     </section>
   </main>
   <footer>
-    <p>&copy; 2024 Caleb Kolman. All rights reserved.</p>
+    <p>© 2024 Caleb Kolman. All rights reserved.</p>
   </footer>
 </body>
 </html>
