@@ -256,38 +256,26 @@ footer a:hover { text-decoration: underline; }
 
 .skill-item {
   padding: 1rem;
-  border: 2px solid var(--primary-color); /* Make the border more prominent */
-  border-radius: 8px;
-  background-color: #ffffff; /* Clean background */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .skill-item:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  background-color: var(--primary-color); /* Highlight background on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .skill-item a {
   text-decoration: none;
-  color: #ffffff; /* White text for better contrast on hover */
-  font-size: 1.2rem;
-  display: block;
-  padding: 0.5rem 0; /* Increase clickable area */
-  transition: color 0.3s ease;
-}
-
-.skill-item a:hover {
-  color: #ffffff; /* Keep text color white on hover */
+  color: var(--primary-color);
+  font-weight: bold;
 }
 
 .skill-item strong {
-  color: var(--secondary-color); /* Darker text color on default */
-}
-
-.skill-item:hover strong {
-  color: #ffffff; /* Switch to white on hover */
+  color: #333;
 }
 
 
