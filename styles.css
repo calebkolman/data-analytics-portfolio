@@ -112,12 +112,10 @@ section {
   padding: 2rem 0;
 }
 
-section:nth-child(even) {
-  background-color: var(--light-color);
-}
-
-section:nth-child(odd) {
+section {
+  padding: 2rem 0;
   background-color: #ffffff;
+  border-bottom: 1px solid #d3d3d3; /* Light gray line */
 }
 
 pre {
