@@ -27,16 +27,17 @@ img {
   display: block;
   max-width: 100%;
   margin: 1rem auto;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 a {
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease, transform 0.3s ease;
 }
 
 a:hover {
-  transform: scale(1.05);
+  color: var(--accent-color);
+  transform: scale(1.1);
 }
 
 /* ==============================
@@ -238,13 +239,15 @@ footer a:hover {
   padding: 0.5rem 1rem; /* Adds space inside the button (top-bottom: 0.5rem, left-right: 1rem) */
   font-size: 1rem; /* Sets the font size to ensure consistency across buttons */
   color: white; /* Sets the text color to white for better contrast */
-  background-color: #007bff; /* Defines the default button background color (blue) */
+  background-color: var(--accent-color); /* Defines the default button background color (blue) */
   text-decoration: none; /* Removes the underline from links styled as buttons */
-  border-radius: 5px; /* Rounds the corners of the button for a softer appearance */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Adds smooth transitions for hover effects */
+  padding: 0.75rem 1.5rem;
+   border-radius: 50px; /* Rounds the corners of the button for a softer appearance */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3)
+   transition: background-color 0.3s ease, transform 0.2s ease; /* Adds smooth transitions for hover effects */
 }
 
 .btn:hover {
-  background-color: #0056b3; /* Darkens the background color on hover for emphasis */
-  transform: scale(1.05); /* Slightly enlarges the button on hover to create an interactive effect */
+    background-color: darken(var(--accent-color), 10%); /* Darkens the background color on hover for emphasis */
+  transform: scale(1.1); /* Slightly enlarges the button on hover to create an interactive effect */
 }
