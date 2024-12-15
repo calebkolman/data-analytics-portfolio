@@ -141,7 +141,7 @@ pre code {
    Python Project
 ============================== */
 /* Main content styles */
-main {
+python-main {
   max-width: 900px; /* Limit the width for readability */
   margin: 0 auto; /* Center the content */
   padding: 2rem; /* Add padding around the content */
@@ -149,7 +149,7 @@ main {
 }
 
 /* Section padding for better spacing */
-section {
+python-section {
   padding: 2rem 0;
 }
 
