@@ -103,7 +103,6 @@ main {
   transform: scale(1.05);
 }
 
-
 /* ==============================
    Section Styles
 ============================== */
@@ -149,27 +148,55 @@ pre code {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: #333;
+  color: var(--text-color);
   width: 200px;
 }
 
-.projects-grid img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.projects-grid img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-.projects-grid img:hover { transform: scale(1.05); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); }
+.projects-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
 
-.projects-grid p { margin-top: 0.5rem; font-size: 1rem; font-weight: bold; text-align: center; color: #555; }
+.projects-grid p {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: #555;
+}
 
+/* ==============================
+   Footer Styles
+============================== */
+footer {
+  background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+  color: var(--light-color);
+  padding: 2rem;
+  text-align: center;
+}
 
-/* ============================== Footer Styles ============================== */ 
+footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+}
 
-footer { background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); color: var(--light-color); padding: 2rem; text-align: center; }
+footer a:hover {
+  text-decoration: underline;
+}
 
-footer a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
-
-footer a:hover { text-decoration: underline; }
-
-
-
+/* ==============================
+   Skills Section
+============================== */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -182,7 +209,7 @@ footer a:hover { text-decoration: underline; }
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: var(--light-color);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -199,14 +226,11 @@ footer a:hover { text-decoration: underline; }
 }
 
 .skill-item strong {
-  color: #333;
+  color: var(--text-color);
 }
 
 /* ==============================
    Button Styles
-   Description:
-   This style is used for buttons across the site to provide a visually appealing and interactive design.
-   Buttons are styled with a modern, clean look, and include hover effects for better user experience.
 ============================== */
 .btn {
   display: inline-block; /* Ensures the button behaves like an inline element but maintains block-like dimensions */
@@ -224,5 +248,3 @@ footer a:hover { text-decoration: underline; }
   background-color: #0056b3; /* Darkens the background color on hover for emphasis */
   transform: scale(1.05); /* Slightly enlarges the button on hover to create an interactive effect */
 }
-
-
