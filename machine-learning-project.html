@@ -59,6 +59,127 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </p>
     </section>
 
+     <!-- Guardian Distribution Chart -->
+<div id="guardian-distribution" class="project">
+  <h3>Guardian Type Distribution</h3>
+  <p>
+    This bar chart visualizes the distribution of guardian types among students, categorized into <code>mother</code>, <code>father</code>, and <code>other</code>. 
+    The analysis highlights which guardians play a primary role in students' lives, providing insights into family dynamics and their potential influence on academic performance.
+  </p>
+
+  <h4>Key Highlights:</h4>
+  <ul>
+    <li>
+      <strong>Mothers:</strong> The majority of students have mothers as their primary guardians, representing the largest group in the dataset.
+    </li>
+    <li>
+      <strong>Fathers:</strong> Fathers make up a smaller, yet significant, portion of the guardian group.
+    </li>
+    <li>
+      <strong>Others:</strong> A minimal percentage of students report guardians other than mothers or fathers, suggesting unique family circumstances.
+    </li>
+    <li>
+      <strong>Visual Dominance:</strong> The bar for mothers is significantly taller, indicating a strong majority compared to other guardian types.
+    </li>
+  </ul>
+
+  <!-- Image Display -->
+  <img src="images/ml_image3.png" 
+       alt="Guardian Type Distribution Chart" 
+       style="max-width: 100%; height: auto; border: 2px solid #ccc; border-radius: 10px; margin: 1rem 0;">
+
+  <p>
+    <strong>Key Insight:</strong> Mothers serve as the primary guardians for most students, with fathers and others playing comparatively smaller roles. 
+    This understanding helps us explore further how family dynamics, such as guardian involvement, influence student performance, study time, and overall academic engagement.
+  </p>
+</div>
+
+
+     <!-- Study Time by Health Boxplot -->
+<div id="study-time-health" class="project">
+  <h3>Study Time vs. Health Status</h3>
+  <p>
+    This boxplot visualizes the relationship between students' self-reported health status 
+    (on a scale of <code>1</code> to <code>5</code>) and their average study time. It reveals key trends 
+    regarding how health impacts study habits.
+  </p>
+
+  <h4>Key Highlights:</h4>
+  <ul>
+    <li>
+      <strong>Health Rating 3 and 4:</strong> Students with moderate health ratings dedicate the most study time, 
+      indicating a potential balance between health and academic commitment.
+    </li>
+    <li>
+      <strong>Lower Health Ratings:</strong> Students with a health rating of <code>1</code> tend to study less, 
+      which may be linked to their lower well-being impacting academic focus or energy levels.
+    </li>
+    <li>
+      <strong>Higher Health Ratings:</strong> Surprisingly, students with the highest health rating (<code>5</code>) 
+      also show less study time, suggesting they may spend more time on non-academic activities or social well-being.
+    </li>
+    <li>
+      <strong>Variability:</strong> Health ratings of <code>3</code> and <code>4</code> exhibit greater variability in study time, 
+      as seen by the larger interquartile ranges, while <code>1</code> and <code>2</code> show more compact distributions.
+    </li>
+    <li>
+      <strong>Outliers:</strong> Students across all health categories exhibit outliers, indicating individual variations in study habits.
+    </li>
+  </ul>
+
+  <!-- Image Display -->
+  <img src="images/ml_image2.png" 
+       alt="Study Time by Health Boxplot" 
+       style="max-width: 100%; height: auto; border: 2px solid #ccc; border-radius: 10px; margin: 1rem 0;">
+
+  <p>
+    <strong>Key Insight:</strong> Students with moderate health ratings (3 and 4) appear to prioritize study time the most, 
+    suggesting a balanced focus on academics. On the other hand, students with very low or very high health ratings 
+    dedicate less time to studying, potentially due to health-related constraints or alternative priorities.
+  </p>
+</div>
+
+
+<div id="scatter-matrix" class="project">
+  <h3>Scatter Matrix of Selected Attributes</h3>
+  <p>
+    This scatter matrix visually showcases pairwise relationships between key attributes, 
+    including students' performance across <code>G1</code>, <code>G2</code>, and <code>G3</code> grades, 
+    as well as absence patterns (<code>absences_G1</code>, <code>absences_G2</code>, <code>absences_G3</code>). 
+    The diagonal histograms reveal distributions of each variable, while the scatter plots highlight trends 
+    and correlations.
+  </p>
+
+  <h4>Key Highlights:</h4>
+  <ul>
+    <li>
+      <strong>Grade Progression (G1, G2, G3):</strong> 
+      Strong positive linear relationships between grades indicate consistent performance progression over time.
+    </li>
+    <li>
+      <strong>Absence Trends:</strong> 
+      Absences in each grade period show weaker relationships with final grades, though visible patterns exist.
+    </li>
+    <li>
+      <strong>Distribution Insights:</strong> 
+      Histograms on the diagonal demonstrate concentrated ranges for grades and absences.
+    </li>
+    <li>
+      <strong>Identifying Patterns:</strong> 
+      Pairwise scatter plots highlight trends or potential outliers between grades and absences.
+    </li>
+  </ul>
+
+  <!-- Image Display -->
+  <img src="images/ml_image4.png" 
+       alt="Scatter Matrix of Selected Attributes" 
+       style="max-width: 100%; height: auto; border: 2px solid #ccc; border-radius: 10px; margin: 1rem 0;">
+
+  <p>
+    This visualization is instrumental for identifying linear relationships, spotting trends, and detecting outliers 
+    between grades and absence patterns, helping inform strategies to improve student performance.
+  </p>
+
     <section id="conclusion">
       <h2>Conclusion</h2>
       <p>
