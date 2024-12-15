@@ -133,15 +133,6 @@ pre code {
   color: #333;
 }
 
-/* General Styles for Consistent Margins */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', Arial, sans-serif;
-  line-height: 1.6;
-  color: var(--text-color);
-}
-
 /* ==============================
    Projects Section
 ============================== */
